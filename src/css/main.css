@@ -88,6 +88,27 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.ui.cards > .card,
+.ui.card {
+    max-width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 290px;
+    background: #FFFFFF;
+    border-radius: 0.3rem;
+    box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5;
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+.ui.card {
+    margin: 1em 0;
+}
+.ui.card:first-child {
+  margin-top: 0em;
+}
+.ui.card:last-child {
+  margin-bottom: 0em;
+}
 
 
 
