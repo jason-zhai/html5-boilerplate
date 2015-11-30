@@ -146,6 +146,18 @@ i.icon {
   margin-bottom: 0em;
 }
 
+/*----------------
+ Floated Content
+-----------------*/
+
+.ui.cards > .card [class*="left floated"],
+.ui.card [class*="left floated"] {
+  float: left;
+}
+.ui.cards > .card [class*="right floated"],
+.ui.card [class*="right floated"] {
+  float: right;
+}
 
 
 
