@@ -19,6 +19,7 @@
     "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.4",
     "normalize.css": "3.0.3",
+    "font-awesome": "git://github.com/FortAwesome/Font-Awesome.git#v4.5.0",
     "run-sequence": "^1.0.2"
   },
   "engines": {

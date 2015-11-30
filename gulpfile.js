@@ -73,6 +73,7 @@ gulp.task('copy', [
     'copy:index.html',
     'copy:jquery',
     'copy:license',
+    'copy:fontawesome',
     'copy:main.css',
     'copy:misc',
     'copy:normalize'
@@ -99,6 +100,13 @@ gulp.task('copy:jquery', function () {
 gulp.task('copy:license', function () {
     return gulp.src('LICENSE.txt')
                .pipe(gulp.dest(dirs.dist));
+});
+
+gulp.task('copy:fontawesome', function () {
+    gulp.src(['node_modules/font-awesome/css/font-awesome.min.css'])
+               .pipe(gulp.dest(dirs.dist + '/css'));
+    gulp.src(['node_modules/font-awesome/fonts/**/*'])
+               .pipe(gulp.dest(dirs.dist + '/fonts'));
 });
 
 gulp.task('copy:main.css', function () {
