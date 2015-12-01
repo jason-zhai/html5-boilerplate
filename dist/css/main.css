@@ -94,6 +94,9 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+body {
+    background-color: #f8f8f8;
+}
 
 i.icon {
   display: inline-block;
@@ -113,6 +116,16 @@ i.icon {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
+
+
+/*******************************
+            Standard
+*******************************/
+
+
+/*--------------
+      Card
+---------------*/
 
 .ui.cards > .card,
 .ui.card {
@@ -146,6 +159,40 @@ i.icon {
   margin-bottom: 0em;
 }
 
+/*--------------
+      Cards
+---------------*/
+
+.ui.cards {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: -0.875em -0.5em;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.ui.cards > .card {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0.875em 0.5em;
+  float: none;
+}
+
+/* Clearing */
+.ui.cards:after,
+.ui.card:after {
+  display: block;
+  content: ' ';
+  height: 0px;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+
 /*----------------
  Floated Content
 -----------------*/
@@ -157,6 +204,45 @@ i.icon {
 .ui.cards > .card [class*="right floated"],
 .ui.card [class*="right floated"] {
   float: right;
+}
+
+/*--------------
+     Images
+---------------*/
+.ui.cards > .card > .image,
+.ui.card > .image {
+  position: relative;
+  display: block;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding: 0em;
+}
+.ui.cards > .card > .image > img,
+.ui.card > .image > img {
+  display: block;
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  border-radius: inherit;
+}
+
+/*--------------
+     Aligned
+---------------*/
+
+.ui.cards > .card [class*="left aligned"],
+.ui.card [class*="left aligned"] {
+  text-align: left;
+}
+.ui.cards > .card [class*="center aligned"],
+.ui.card [class*="center aligned"] {
+  text-align: center;
+}
+.ui.cards > .card [class*="right aligned"],
+.ui.card [class*="right aligned"] {
+  text-align: right;
 }
 
 
