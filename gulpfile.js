@@ -49,7 +49,7 @@ gulp.task('archive:zip', function (done) {
         // permissions, so we need to add files individually
         archiver.append(fs.createReadStream(filePath), {
             'name': file,
-            'mode': fs.statSync(filePath)
+            'mode': fs.statSync(filePath).mode
         });
 
     });
@@ -74,6 +74,7 @@ gulp.task('copy', [
     'copy:jquery',
     'copy:license',
     'copy:fontawesome',
+    'copy:glyphicons',
     'copy:main.css',
     'copy:misc',
     'copy:normalize'
@@ -106,6 +107,13 @@ gulp.task('copy:fontawesome', function () {
     gulp.src(['node_modules/font-awesome/css/font-awesome.min.css'])
                .pipe(gulp.dest(dirs.dist + '/css'));
     gulp.src(['node_modules/font-awesome/fonts/**/*'])
+               .pipe(gulp.dest(dirs.dist + '/fonts'));
+});
+
+gulp.task('copy:glyphicons', function () {
+    gulp.src(['node_modules/ccm_assets/glyphicons/web/html_css/css/glyphicons.css'])
+               .pipe(gulp.dest(dirs.dist + '/css'));
+    gulp.src(['node_modules/ccm_assets/glyphicons/web/html_css/fonts/**/*'])
                .pipe(gulp.dest(dirs.dist + '/fonts'));
 });
 
