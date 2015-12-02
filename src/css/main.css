@@ -122,11 +122,10 @@ i.icon {
 
 .ui.cards > .card,
 .ui.card {
-    max-width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 290px;
+    max-width: 350px;
     background: #FFFFFF;
     border-radius: 0.3rem;
     box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5;
@@ -195,7 +194,6 @@ i.icon {
 .ui.card > .image > img {
   display: block;
   width: 100%;
-  max-width: 120px;
   height: auto;
   border-radius: inherit;
 }
