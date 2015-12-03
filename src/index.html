@@ -22,6 +22,12 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+        {% for name in names %}
+            <h1>{{ name }}</h1>
+            {% set pattern = 'patterns/' + name + '.html' %}
+            {% include pattern %}
+        {% endfor %}
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{JQUERY_VERSION}}/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
