@@ -2,8 +2,8 @@ var fs = require('fs');
 var path = require('path');
 
 var gulp = require('gulp');
-
 var connect = require('gulp-connect');
+var swig = require('gulp-swig');
 
 // Load all gulp plugins automatically
 // and attach them to the `plugins` object
@@ -15,6 +15,12 @@ var runSequence = require('run-sequence');
 
 var pkg = require('./package.json');
 var dirs = pkg['h5bp-configs'].directories;
+var patterns = {
+    defaults: {
+        cache: false
+    },
+    data: {}
+};
 
 // ---------------------------------------------------------------------
 // | Helper tasks                                                      |
@@ -89,6 +95,7 @@ gulp.task('copy:.htaccess', function () {
 gulp.task('copy:index.html', function () {
     return gulp.src(dirs.src + '/index.html')
                .pipe(plugins.replace(/{{JQUERY_VERSION}}/g, pkg.devDependencies.jquery))
+               .pipe(swig(patterns))
                .pipe(gulp.dest(dirs.dist));
 });
 
