@@ -19,3 +19,7 @@ i.icon {
   -webkit-font-smoothing: antialiased;
   backface-visibility: hidden;
 }
+
+.glyphicons {
+  margin: 0em 0.25rem 0em 0em;
+}
