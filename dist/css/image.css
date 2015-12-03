@@ -1,0 +1,21 @@
+/*******************************
+             Image
+*******************************/
+
+.ui.image {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  background-color: transparent;
+}
+
+/*--------------
+     Sizes
+---------------*/
+
+.ui.mini.image {
+  width: 35px;
+  height: auto;
+  font-size: 0.7rem;
+}

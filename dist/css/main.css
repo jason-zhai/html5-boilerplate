@@ -177,7 +177,6 @@ body {
 .ui.cards > .card > :first-child,
 .ui.card > :first-child {
   border-radius: 0.3rem 0.3rem 0em 0em !important;
-  border-top: none !important;
 }
 .ui.cards > .card > :last-child,
 .ui.card > :last-child {
@@ -196,7 +195,6 @@ body {
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    border-top: 1px solid rgba(34, 36, 38, .1);
     padding: 1em 1em;
     font-size: 1em;
 }
@@ -213,6 +211,16 @@ body {
 .ui.card [class*="right floated"] {
   float: right;
 }
+
+/*----------------
+ Inline Content
+-----------------*/
+
+.ui.cards > .card [class*="inline"],
+.ui.card [class*="inline"] {
+  display: inline-block;
+}
+
 
 /*--------------
      Images
@@ -251,6 +259,68 @@ body {
 .ui.card [class*="right aligned"] {
   text-align: right;
 }
+
+
+/*--------------
+     Label Buttons
+---------------*/
+
+/*-----Icon----- */
+
+/* Group */
+.ui.cards > .card > .content .glyphicons-group,
+.ui.card > .content .glyphicons-group {
+  cursor: pointer;
+  opacity: 0.75;
+  -webkit-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+.ui.cards > .card > .content .glyphicons-group:hover,
+.ui.card > .content .glyphicons-group:hover {
+  opacity: 1;
+  color: #FFB70A;
+}
+.ui.cards > .card > .content .active.glyphicons-group,
+.ui.card > .content .active.glyphicons-group {
+  color: #FFE623;
+}
+
+/* Cart-out */
+.ui.cards > .card > .content .glyphicons-cart-out,
+.ui.card > .content .glyphicons-cart-out {
+  cursor: pointer;
+  opacity: 0.75;
+  -webkit-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+.ui.cards > .card > .content .glyphicons-cart-out:hover,
+.ui.card > .content .glyphicons-cart-out:hover {
+  opacity: 1;
+  color: #FF2733;
+}
+.ui.cards > .card > .content .active.glyphicons-cart-out,
+.ui.card > .content .active.glyphicons-cart-out {
+  color: #FF2733;
+}
+
+/* Options Horizontal */
+.ui.cards > .card > .content .glyphicons-option-horizontal,
+.ui.card > .content .glyphicons-option-horizontal {
+  cursor: pointer;
+  opacity: 0.75;
+  -webkit-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+.ui.cards > .card > .content .glyphicons-option-horizontal:hover,
+.ui.card > .content .glyphicons-option-horizontal:hover {
+  opacity: 1;
+  color: #FF2733;
+}
+.ui.cards > .card > .content .active.glyphicons-option-horizontal,
+.ui.card > .content .active.glyphicons-option-horizontal {
+  color: #FF2733;
+}
+
 
     
     /*******************************
@@ -348,6 +418,29 @@ i.icon {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+}
+
+    
+    /*******************************
+             Image
+*******************************/
+
+.ui.image {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  background-color: transparent;
+}
+
+/*--------------
+     Sizes
+---------------*/
+
+.ui.mini.image {
+  width: 35px;
+  height: auto;
+  font-size: 0.7rem;
 }
 
 
