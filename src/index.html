@@ -22,7 +22,7 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        {% for name in names %}
+        {% for name in html %}
             <h1>{{ name }}</h1>
             {% set pattern = 'patterns/' + name + '.html' %}
             {% include pattern %}

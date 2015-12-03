@@ -4,6 +4,7 @@ var path = require('path');
 var gulp = require('gulp');
 var connect = require('gulp-connect');
 var swig = require('gulp-swig');
+var rename = require("gulp-rename");
 
 // Load all gulp plugins automatically
 // and attach them to the `plugins` object
@@ -20,7 +21,8 @@ var patterns = {
         cache: false
     },
     data: {
-        names: ['card']
+        html: ['card'],
+        css: ['card', 'icons']
     }
 };
 
@@ -133,6 +135,10 @@ gulp.task('copy:main.css', function () {
                     ' | ' + pkg.homepage + ' */\n\n';
 
     return gulp.src(dirs.src + '/css/main.css')
+               .pipe(swig(patterns))
+               .pipe(rename({
+                   extname: '.css'
+               }))
                .pipe(plugins.header(banner))
                .pipe(plugins.autoprefixer({
                    browsers: ['last 2 versions', 'ie >= 8', '> 1%'],
