@@ -11,6 +11,7 @@
 	margin: 0;
 	display: none;
 	cursor: pointer;
+	z-index: 9999999;
 }
 .ui.cards > .card:hover > .card.hovering,
 .ui.card:hover > .card.hovering {
