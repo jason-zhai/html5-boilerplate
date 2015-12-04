@@ -21,7 +21,7 @@ var patterns = {
         cache: false
     },
     data: {
-        html: [],
+        html: ['card'],
         css: []
     }
 };
