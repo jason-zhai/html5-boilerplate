@@ -94,8 +94,8 @@ textarea {
 {% include "../../semantic/dist/semantic.min.css" %}
 
 {% for name in css %}
-    {% set pattern = name + '.css' %}
-    {% include pattern ignore missing %}
+{% set pattern = name + '.css' %}
+{% include pattern ignore missing %}
 {% endfor %}
 
 

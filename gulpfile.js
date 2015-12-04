@@ -22,7 +22,7 @@ var patterns = {
     },
     data: {
         html: ['card'],
-        css: ['site']
+        css: ['site', 'icon']
     }
 };
 
