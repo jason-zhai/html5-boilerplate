@@ -16,7 +16,7 @@ var runSequence = require('run-sequence');
 
 var pkg = require('./package.json');
 var dirs = pkg['h5bp-configs'].directories;
-var patterns = {
+var patternsData = {
     defaults: {
         cache: false
     },
@@ -78,6 +78,12 @@ gulp.task('clean', function (done) {
     });
 });
 
+gulp.task('pattern', function () {
+    return gulp.src(dirs.src + '/patterns/**/*.html')
+               .pipe(swig())
+               .pipe(gulp.dest(dirs.dist + '/patterns'));
+});
+
 gulp.task('copy', [
     'copy:.htaccess',
     'copy:index.html',
@@ -100,7 +106,7 @@ gulp.task('copy:.htaccess', function () {
 gulp.task('copy:index.html', function () {
     return gulp.src(dirs.src + '/index.html')
                .pipe(plugins.replace(/{{JQUERY_VERSION}}/g, pkg.devDependencies.jquery))
-               .pipe(swig(patterns))
+               .pipe(swig(patternsData))
                .pipe(gulp.dest(dirs.dist));
 });
 
@@ -141,7 +147,7 @@ gulp.task('copy:main.css', function () {
                     ' | ' + pkg.homepage + ' */\n\n';
 
     return gulp.src(dirs.src + '/css/main.css')
-               .pipe(swig(patterns))
+               .pipe(swig(patternsData))
                .pipe(rename({
                    extname: '.css'
                }))
@@ -162,6 +168,7 @@ gulp.task('copy:misc', function () {
         // Exclude the following files
         // (other tasks will handle the copying of these files)
         '!' + dirs.src + '/css/main.css',
+        '!' + dirs.src + '/patterns/**/*.html',
         '!' + dirs.src + '/index.html'
 
     ], {
@@ -209,6 +216,7 @@ gulp.task('archive', function (done) {
 gulp.task('build', function (done) {
     runSequence(
         ['clean', 'lint:js'],
+        'pattern',
         'copy', 'reload',
     done);
 });
