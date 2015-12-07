@@ -2,8 +2,9 @@ var fs = require('fs');
 var path = require('path');
 
 var gulp = require('gulp');
-
 var connect = require('gulp-connect');
+var swig = require('gulp-swig');
+var rename = require('gulp-rename');
 
 // Load all gulp plugins automatically
 // and attach them to the `plugins` object
@@ -15,6 +16,15 @@ var runSequence = require('run-sequence');
 
 var pkg = require('./package.json');
 var dirs = pkg['h5bp-configs'].directories;
+var patternsData = {
+    defaults: {
+        cache: false
+    },
+    data: {
+        html: ['card', 'card_pop'],
+        css: ['site', 'icon', 'card']
+    }
+};
 
 // ---------------------------------------------------------------------
 // | Helper tasks                                                      |
@@ -49,7 +59,7 @@ gulp.task('archive:zip', function (done) {
         // permissions, so we need to add files individually
         archiver.append(fs.createReadStream(filePath), {
             'name': file,
-            'mode': fs.statSync(filePath)
+            'mode': fs.statSync(filePath).mode
         });
 
     });
@@ -68,12 +78,20 @@ gulp.task('clean', function (done) {
     });
 });
 
+gulp.task('pattern', function () {
+    return gulp.src(dirs.src + '/patterns/**/*.html')
+               .pipe(swig())
+               .pipe(gulp.dest(dirs.dist + '/patterns'));
+});
+
 gulp.task('copy', [
     'copy:.htaccess',
     'copy:index.html',
     'copy:jquery',
     'copy:license',
     'copy:fontawesome',
+    'copy:glyphicons',
+    'copy:semantic',
     'copy:main.css',
     'copy:misc',
     'copy:normalize'
@@ -88,6 +106,7 @@ gulp.task('copy:.htaccess', function () {
 gulp.task('copy:index.html', function () {
     return gulp.src(dirs.src + '/index.html')
                .pipe(plugins.replace(/{{JQUERY_VERSION}}/g, pkg.devDependencies.jquery))
+               .pipe(swig(patternsData))
                .pipe(gulp.dest(dirs.dist));
 });
 
@@ -109,6 +128,18 @@ gulp.task('copy:fontawesome', function () {
                .pipe(gulp.dest(dirs.dist + '/fonts'));
 });
 
+gulp.task('copy:glyphicons', function () {
+    gulp.src(['node_modules/ccm_assets/glyphicons/web/html_css/css/glyphicons.css'])
+               .pipe(gulp.dest(dirs.dist + '/css'));
+    gulp.src(['node_modules/ccm_assets/glyphicons/web/html_css/fonts/**/*'])
+               .pipe(gulp.dest(dirs.dist + '/fonts'));
+});
+
+gulp.task('copy:semantic', function () {
+    gulp.src(['semantic/dist/semantic.min.js'])
+               .pipe(gulp.dest(dirs.dist + '/js/vendor'));
+});
+
 gulp.task('copy:main.css', function () {
 
     var banner = '/*! HTML5 Boilerplate v' + pkg.version +
@@ -116,6 +147,10 @@ gulp.task('copy:main.css', function () {
                     ' | ' + pkg.homepage + ' */\n\n';
 
     return gulp.src(dirs.src + '/css/main.css')
+               .pipe(swig(patternsData))
+               .pipe(rename({
+                   extname: '.css'
+               }))
                .pipe(plugins.header(banner))
                .pipe(plugins.autoprefixer({
                    browsers: ['last 2 versions', 'ie >= 8', '> 1%'],
@@ -133,6 +168,7 @@ gulp.task('copy:misc', function () {
         // Exclude the following files
         // (other tasks will handle the copying of these files)
         '!' + dirs.src + '/css/main.css',
+        '!' + dirs.src + '/patterns/**/*.html',
         '!' + dirs.src + '/index.html'
 
     ], {
@@ -180,6 +216,7 @@ gulp.task('archive', function (done) {
 gulp.task('build', function (done) {
     runSequence(
         ['clean', 'lint:js'],
+        'pattern',
         'copy', 'reload',
     done);
 });

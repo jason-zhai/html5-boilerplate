@@ -12,6 +12,7 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/glyphicons.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
@@ -20,32 +21,18 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <div class="ui card">
-          <div class="content">
-            <div class="right floated meta">14h</div>
-          </div>
-          <div class="image">
-            <img>
-          </div>
-          <div class="content">
-            <span class="right floated">
-              <i class="fa-heart outline like icon"></i>
-              17 likes
-            </span>
-            <i class="fa-comment icon"></i>
-            3 comments
-          </div>
-          <div class="extra content">
-            <div class="ui large transparent left icon input">
-              <i class="heart outline icon"></i>
-              <input type="text" placeholder="Add Comment...">
-            </div>
-          </div>
+        <div class="ui container">
+            <h1>CliQr UI Patterns Library</h1>
+            {% for name in html %}
+                <h2 class="ui dividing header">{{ name }}</h2>
+                {% set pattern = '../dist/patterns/' + name + '.html' %}
+                {% include pattern %}
+            {% endfor %}
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{JQUERY_VERSION}}/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
+        <script src="js/vendor/semantic.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 

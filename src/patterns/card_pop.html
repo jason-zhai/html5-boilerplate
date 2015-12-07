@@ -1,0 +1,17 @@
+<!-- show html structure directly onto the page -->
+<div class="ui grid">
+  <div class="doubling four column row">
+	{% set i = 4 %}
+	{% set iArray = Array(i) %}
+	{% for x, y in iArray %}
+    <div class="column">
+    	<div class="ui fluid card">
+	        <div class="center aligned content">
+	            <p><img src="img/wordpress.png" alt="" class="ui mini image"></p>
+	            <div class="header">Wordpress</div>
+	        </div>
+        </div>
+    </div>
+	{% endfor %}
+  </div>
+</div>

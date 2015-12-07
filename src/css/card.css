@@ -1,0 +1,41 @@
+/*-------------------
+       Hovering
+--------------------*/
+
+.ui.hovering.card {
+	position: absolute;
+	width: 100% !important;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 !important;
+	display: none;
+	cursor: pointer;
+	z-index: 9999999;
+}
+.ui.cards > .card:hover > .card.hovering,
+.ui.card:hover > .card.hovering {
+	display: block;
+}
+
+/*--------------
+  Inner Card Rounded Edges
+---------------*/
+
+.ui.cards > .card > .card:first-child,
+.ui.card > .card:first-child {
+  border-radius: 0.28571429rem !important;
+}
+.ui.cards > .card > .card:last-child,
+.ui.card > .card:last-child {
+  border-radius: 0.28571429rem !important;
+}
+
+/*----------------
+ text underline on hover
+-----------------*/
+
+.ui.cards > .card [class*="hover underline"]:hover,
+.ui.card [class*="hover underline"]:hover {
+  text-decoration: underline;
+}
