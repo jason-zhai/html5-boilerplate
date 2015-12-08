@@ -2,7 +2,8 @@
        Hovering
 --------------------*/
 
-.ui.hovering.card {
+.ui.hovering.card,
+.ui.card > .hovering.content {
 	position: absolute;
 	width: 100% !important;
 	top: 0;
@@ -14,7 +15,8 @@
 	z-index: 9999999;
 }
 .ui.cards > .card:hover > .card.hovering,
-.ui.card:hover > .card.hovering {
+.ui.card:hover > .card.hovering,
+.ui.card > .hovering.content {
 	display: block;
 }
 
