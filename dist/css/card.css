@@ -79,7 +79,7 @@
  text underline on hover
 -----------------*/
 
-.ui.cards > .card [class*="hover underline"]:hover,
-.ui.card [class*="hover underline"]:hover {
+.ui.cards > .card .underline:hover,
+.ui.card .underline:hover {
   text-decoration: underline;
 }
