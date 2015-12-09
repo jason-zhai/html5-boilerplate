@@ -20,6 +20,53 @@
 	display: block;
 }
 
+/*-------------------
+       Transitional
+--------------------*/
+.ui.transitional.card {
+	transition: height .3s ease-in-out .3s;
+	position: absolute;
+	width: 100%;
+	right: 0;
+	left: 0;
+	top: 0;
+	height: 100px;
+}
+.ui.transitional.card:hover {
+	transition: height .3s ease-in-out;
+	height: 460px;
+}
+.ui.transitional.card .default {
+	transition: opacity .1s ease-in-out .6s,
+				padding .1s ease-in-out .3s;
+}
+.ui.transitional.card:hover .default {
+	transition: opacity .1s ease-in-out,
+				padding .1s ease-in-out .3s;
+}
+.ui.transitional.card .hover {
+	transition: opacity .3s ease-in-out,
+				padding .1s ease-in-out;
+}
+.ui.transitional.card:hover .hover {
+	transition: opacity .1s ease-in-out .5s,
+				padding .1s ease-in-out .5s;
+}
+.ui.transitional.card .default {
+	height: 0;
+}
+.ui.transitional.card .hover {
+	opacity: 0;
+}
+.ui.transitional.card:hover .default {
+	opacity: 0;
+	padding: 0;
+	height: 0;
+}
+.ui.transitional.card:hover .hover {
+	opacity: 1;
+}
+
 /*--------------
   Inner Card Rounded Edges
 ---------------*/
