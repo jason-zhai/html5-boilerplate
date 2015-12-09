@@ -1,5 +1,11 @@
 <div class="ui grid">
+	{% set j = 3 %}
+	{% set jArray = Array(j) %}
+	{% for x, y in jArray %}
 	<div class="doubling four column row">
+	{% set i = 4 %}
+	{% set iArray = Array(i) %}
+	{% for x, y in iArray %}
 		<div class="column">
 			<div class="ui fluid expanding card">
 				<div class="center aligned content">
@@ -29,5 +35,7 @@
 				</div>
 			</div>
 		</div>
+	{% endfor %}
 	</div>
+	{% endfor %}
 </div>
