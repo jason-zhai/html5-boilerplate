@@ -158,6 +158,14 @@ i.icon {
 }
 
 
+@media only screen and (min-width: 0) and (max-width: 991px) {
+	.ui[class*="three four column"].grid > .row > .column,
+	.ui[class*="three four column"].grid > .column:not(.row) {
+	  width: 33.33333333%;
+	}
+}
+
+
 /*-------------------
        Hovering
 --------------------*/
@@ -255,7 +263,7 @@ i.icon {
 }
 
 
-.ui.grid > .row > .column {
+.ui.grid > .column {
 	height: 180px;
 }
 .ui.expanding.card {
