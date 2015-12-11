@@ -14,9 +14,9 @@
 	z-index: 1;
 }
 .ui.expanding.card:hover {
-	width: 120%;
+	width: 130%;
 	height: 230px;
-	transform: translate(-8.3%, -40px);
+	transform: translate(-11.2%, -40px);
 	z-index: 999999999;
 }
 .ui.expanding.card > .content {
