@@ -21,14 +21,12 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="ui container">
-            <h1>CliQr UI Patterns Library</h1>
-            {% for name in html %}
-                <h2 class="ui dividing header">{{ name }}</h2>
-                {% set pattern = '../dist/patterns/' + name + '.html' %}
-                {% include pattern %}
-            {% endfor %}
-        </div>
+        <h1>CliQr UI Patterns Library</h1>
+        {% for name in html %}
+            <h2 class="ui dividing header">{{ name }}</h2>
+            {% set pattern = '../dist/patterns/' + name + '.html' %}
+            {% include pattern %}
+        {% endfor %}
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{JQUERY_VERSION}}/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
