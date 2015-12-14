@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var connect = require('gulp-connect');
 var swig = require('gulp-swig');
 var rename = require('gulp-rename');
+var ghPages = require('gulp-gh-pages');
 
 // Load all gulp plugins automatically
 // and attach them to the `plugins` object
@@ -169,6 +170,7 @@ gulp.task('copy:misc', function () {
 
         // Exclude the following files
         // (other tasks will handle the copying of these files)
+        '!' + dirs.src + '/css/partials/*',
         '!' + dirs.src + '/css/main.css',
         '!' + dirs.src + '/patterns/**/*.html',
         '!' + dirs.src + '/index.html'
@@ -200,6 +202,11 @@ gulp.task('lint:js', function () {
 gulp.task('reload', function() {
     return gulp.src(dirs.dist)
                .pipe(connect.reload());
+});
+
+gulp.task('deploy', function() {
+    return gulp.src('./dist/**/*')
+               .pipe(ghPages());
 });
 
 
