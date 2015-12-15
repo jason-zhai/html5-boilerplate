@@ -88,13 +88,8 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-/*******************************
-    Include Semantic UI Here
-*******************************/
-{% include "./semantic/dist/semantic.min.css" %}
-
 {% for name in css %}
-{% include './src/css/partials/' + name + '.css' %}
+{% include 'partials/css/' + name + '.nunjucks' %}
 {% endfor %}
 
 

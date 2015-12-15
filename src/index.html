@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/glyphicons.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/semantic.min.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
@@ -25,7 +26,7 @@
             <h1>CliQr UI Patterns Library</h1>
             {% for name in html %}
                 <h2 class="ui dividing header">{{ name }}</h2>
-                {% include "./dist/patterns/" + name + ".html" %}
+                {% include "partials/html/" + name + ".nunjucks" %}
             {% endfor %}
         </div>
 

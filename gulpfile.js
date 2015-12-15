@@ -20,9 +20,10 @@ var pkg = require('./package.json');
 var dirs = pkg['h5bp-configs'].directories;
 
 // App's data
-function getDataForFile() {
-    return require('./app.json');
+function LoadDataForApp() {
+    return require('./src/app.json');
 }
+nunjucksRender.nunjucks.configure(['src/templates/']);
 
 
 // ---------------------------------------------------------------------
@@ -77,13 +78,6 @@ gulp.task('clean', function (done) {
     });
 });
 
-gulp.task('pattern', function () {
-    nunjucksRender.nunjucks.configure({ noCache: true });
-    return gulp.src(dirs.src + '/patterns/**/*.html')
-               .pipe(nunjucksRender())
-               .pipe(gulp.dest(dirs.dist + '/patterns'));
-});
-
 gulp.task('copy', [
     'copy:.htaccess',
     'copy:index.html',
@@ -104,10 +98,9 @@ gulp.task('copy:.htaccess', function () {
 });
 
 gulp.task('copy:index.html', function () {
-    nunjucksRender.nunjucks.configure({ noCache: true });
     return gulp.src(dirs.src + '/index.html')
                .pipe(plugins.replace(/{{JQUERY_VERSION}}/g, pkg.devDependencies.jquery))
-               .pipe(data(getDataForFile))
+               .pipe(data(LoadDataForApp))
                .pipe(nunjucksRender())
                .pipe(gulp.dest(dirs.dist));
 });
@@ -140,19 +133,20 @@ gulp.task('copy:glyphicons', function () {
 gulp.task('copy:semantic', function () {
     gulp.src(['semantic/dist/semantic.min.js'])
                .pipe(gulp.dest(dirs.dist + '/js/vendor'));
+    gulp.src(['semantic/dist/semantic.min.css'])
+               .pipe(gulp.dest(dirs.dist + '/css'));
     gulp.src(['semantic/dist/themes/**/*'])
                .pipe(gulp.dest(dirs.dist + '/css/themes'));
 });
 
 gulp.task('copy:main.css', function () {
 
-    nunjucksRender.nunjucks.configure({ noCache: true });
     var banner = '/*! HTML5 Boilerplate v' + pkg.version +
                     ' | ' + pkg.license.type + ' License' +
                     ' | ' + pkg.homepage + ' */\n\n';
 
     return gulp.src(dirs.src + '/css/main.css')
-               .pipe(data(getDataForFile))
+               .pipe(data(LoadDataForApp))
                .pipe(nunjucksRender())
                .pipe(rename({
                    extname: '.css'
@@ -173,11 +167,13 @@ gulp.task('copy:misc', function () {
 
         // Exclude the following files
         // (other tasks will handle the copying of these files)
-        '!' + dirs.src + '/css/partials',
-        '!' + dirs.src + '/css/partials/*',
         '!' + dirs.src + '/css/main.css',
-        '!' + dirs.src + '/patterns/**/*.html',
-        '!' + dirs.src + '/index.html'
+        '!' + dirs.src + '/templates',
+        '!' + dirs.src + '/templates/**/*',
+        '!' + dirs.src + '/pages',
+        '!' + dirs.src + '/pages/**/*',
+        '!' + dirs.src + '/index.html',
+        '!' + dirs.src + '/app.json'
 
     ], {
 
@@ -229,7 +225,6 @@ gulp.task('archive', function (done) {
 gulp.task('build', function (done) {
     runSequence(
         ['clean', 'lint:js'],
-        'pattern',
         'copy', 'reload',
     done);
 });
