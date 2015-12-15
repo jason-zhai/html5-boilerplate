@@ -91,11 +91,10 @@ textarea {
 /*******************************
     Include Semantic UI Here
 *******************************/
-{% include "../../semantic/dist/semantic.min.css" %}
+{% include "./semantic/dist/semantic.min.css" %}
 
 {% for name in css %}
-{% set pattern = 'partials/' + name + '.css' %}
-{% include pattern ignore missing %}
+{% include './src/css/partials/' + name + '.css' %}
 {% endfor %}
 
 

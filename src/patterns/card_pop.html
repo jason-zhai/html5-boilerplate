@@ -1,9 +1,7 @@
 <!-- show html structure directly onto the page -->
 <div class="ui grid">
   <div class="doubling four column row">
-	{% set i = 2 %}
-	{% set iArray = Array(i) %}
-	{% for x, y in iArray %}
+	{% for i in range(0, 3) -%}
     <div class="column">
     	<div class="ui fluid card">
 	        <div class="center aligned content">
