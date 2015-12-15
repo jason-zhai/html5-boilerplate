@@ -23,7 +23,6 @@ var dirs = pkg['h5bp-configs'].directories;
 function getDataForFile() {
     return require('./app.json');
 }
-nunjucksRender.nunjucks.configure({ noCache: true });
 
 
 // ---------------------------------------------------------------------
@@ -79,6 +78,7 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('pattern', function () {
+    nunjucksRender.nunjucks.configure({ noCache: true });
     return gulp.src(dirs.src + '/patterns/**/*.html')
                .pipe(nunjucksRender())
                .pipe(gulp.dest(dirs.dist + '/patterns'));
@@ -104,6 +104,7 @@ gulp.task('copy:.htaccess', function () {
 });
 
 gulp.task('copy:index.html', function () {
+    nunjucksRender.nunjucks.configure({ noCache: true });
     return gulp.src(dirs.src + '/index.html')
                .pipe(plugins.replace(/{{JQUERY_VERSION}}/g, pkg.devDependencies.jquery))
                .pipe(data(getDataForFile))
@@ -145,6 +146,7 @@ gulp.task('copy:semantic', function () {
 
 gulp.task('copy:main.css', function () {
 
+    nunjucksRender.nunjucks.configure({ noCache: true });
     var banner = '/*! HTML5 Boilerplate v' + pkg.version +
                     ' | ' + pkg.license.type + ' License' +
                     ' | ' + pkg.homepage + ' */\n\n';
