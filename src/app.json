@@ -1,4 +1,4 @@
 {
-	"html": [""],
-	"css": ["site"]
+	"html": ["input"],
+	"css": ["site", "input"]
 }

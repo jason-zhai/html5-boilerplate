@@ -1,0 +1,15 @@
+.ui.expanding.input > input {
+	width: 0;
+	padding-left: 0;
+	border-color: transparent;
+	cursor: pointer;
+	transition: width .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s,
+				padding .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s,
+				border .4s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s;
+}
+.ui.expanding.input > input:focus {
+	cursor: text;
+	padding-left: 1em;
+	border-color: #85B7D9;
+	width: 200px;
+}
