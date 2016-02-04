@@ -1,0 +1,8 @@
+<div class="ui buttons">
+    <button class="ui compact icon button">
+      <i class="pause icon"></i>
+    </button>
+    <button class="ui compact icon button">
+      <i class="pause icon"></i>
+    </button>
+</div>
