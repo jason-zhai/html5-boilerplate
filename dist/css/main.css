@@ -280,6 +280,7 @@ body {
 	-ms-transform: translate(-11.2%, -40px);
 	transform: translate(-11.2%, -40px);
 	z-index: 999999999;
+	overflow: visible;
 }
 .ui.expanding.card > .content {
 	-webkit-transition: opacity .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) .3s;
@@ -293,8 +294,8 @@ body {
 }
 
 .ui.expanding.card > .hover.shown.expansion {
-	-webkit-transition: opacity .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s;
-	transition: opacity .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s;
+	-webkit-transition: opacity .1s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s;
+	transition: opacity .1s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s;
 	opacity: 0;
 	position: absolute;
 	width: 100%;
@@ -305,6 +306,9 @@ body {
 	-webkit-transition: opacity .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) .4s;
 	transition: opacity .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) .4s;
 	opacity: 100;
+}
+.ui.flat.card {
+	box-shadow: none;
 }
 
 
