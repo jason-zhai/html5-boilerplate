@@ -26,7 +26,7 @@
             <h1>CliQr UI Patterns Library</h1>
             {% for name in html %}
                 <h2 class="ui dividing header">{{ name }}</h2>
-                {% include "partials/html/" + name + ".nunjucks" %}
+                {% include "partials/html/" + name + ".nunjucks" ignore missing %}
             {% endfor %}
         </div>
 

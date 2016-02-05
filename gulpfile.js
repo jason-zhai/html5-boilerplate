@@ -23,7 +23,9 @@ var dirs = pkg['h5bp-configs'].directories;
 function LoadDataForApp() {
     return require('./src/app.json');
 }
-nunjucksRender.nunjucks.configure(['src/templates/']);
+nunjucksRender.nunjucks.configure(['src/templates/'], {
+    noCache: true
+});
 
 
 // ---------------------------------------------------------------------
