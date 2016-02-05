@@ -42,3 +42,6 @@
 	transition: opacity .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) .4s;
 	opacity: 100;
 }
+.ui.flat.card {
+	box-shadow: none;
+}

@@ -10,6 +10,7 @@
 					<div class="header">Wordpress</div>
 				</div>
 				<div class="hover shown expansion">
+					<div class="ui fluid flat card">
 						<div class="content">
 							<span class="glyphicons glyphicons-group"></span>
 							<span class="glyphicons glyphicons-cart-out"></span>
