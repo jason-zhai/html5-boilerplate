@@ -9,7 +9,6 @@
 				height .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s,
 				transform .2s cubic-bezier(0.785, 0.135, 0.150, 0.860) 0s,
 				z-index .2s linear .3s;
-	overflow: hidden;
 	cursor: pointer;
 	z-index: 1;
 }

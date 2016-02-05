@@ -1,0 +1,7 @@
+.ui.dropdown[class*="top left pinned"] > .menu {
+	left: -7px;
+	top: -3px;
+}
+.ui.dropdown[class*="top left pinned"] > .glyphicons {
+	z-index: 20;
+}

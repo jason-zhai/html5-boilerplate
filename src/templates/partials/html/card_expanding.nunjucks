@@ -15,29 +15,22 @@
 							<span class="glyphicons glyphicons-group"></span>
 							<span class="glyphicons glyphicons-cart-out"></span>
 							<div class="right floated">
-								<div class="ui left pointing dropdown">
+								<div class="ui top left pinned dropdown">
 									<span class="glyphicons glyphicons-option-horizontal"></span>
 									<div class="menu">
-										<div class="ui left search icon input">
-										  <i class="search icon"></i>
-										  <input type="text" name="search" placeholder="Search issues...">
+										<div class="item">
 										</div>
-										<div class="divider"></div>
 										<div class="header">
-										  <i class="tags icon"></i>
-										  Filter by tag
+										  APPLICATION PROFILE
 										</div>
 										<div class="item">
-										  <div class="ui red empty circular label"></div>
-										  Important
+										  Delete
 										</div>
 										<div class="item">
-										  <div class="ui blue empty circular label"></div>
-										  Announcement
+										  Edit
 										</div>
 										<div class="item">
-										  <div class="ui black empty circular label"></div>
-										  Discussion
+										  Share
 										</div>
 									</div>
 								</div>

@@ -1,4 +1,4 @@
 {
 	"html": ["card_expanding"],
-	"css": ["site", "icon", "grid", "card", "card_expanding"]
+	"css": ["site", "icon", "grid", "card", "card_expanding", "dropdown"]
 }
