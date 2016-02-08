@@ -1,3 +1,7 @@
+.ui.upward.dropdown[class*="pinned"] > .menu {
+	bottom: 0;
+	border-radius: .3rem;
+}
 .ui.dropdown[class*="top left pinned"] > .menu {
 	left: -7px;
 	top: -3px;
