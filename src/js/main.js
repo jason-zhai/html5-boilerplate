@@ -13,5 +13,7 @@ $(function() {
 	});
 });
 $('.ui.dropdown')
-  .dropdown()
+  .dropdown({
+	  on: 'hover'
+  })
 ;
