@@ -1,7 +1,32 @@
 $('.ui.checkbox')
   .checkbox()
 ;
-
+$('.ui.form')
+  .form({
+    on: 'blur',
+    inline: true,
+    fields: {
+       ccmUrl: {
+        identifier: 'ccm-url',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your name'
+          }
+        ]
+      },
+      name: {
+        identifier: 'username',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your name'
+          }
+        ]
+      }
+    }
+  })
+;
 
 (function() {
     var defaultMapping = $('#tab1').clone();
