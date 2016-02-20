@@ -56,6 +56,11 @@
 	display: none;
 }
 
+.ui.hidden.divider {
+	display: block !important;
+	visibility: visible !important;
+}
+
 @media only screen and (max-width: 767px) {
 	.ui.form .fields > .four.wide.field:last-child {
 		margin-bottom: 0;
