@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<link rel="stylesheet" href="3e00b7170f251200497f06ace1050e28.cssdbx"></link>
+<link rel="stylesheet" href="fdcb0c330f691200497f06ace1050ee7.cssdbx"></link>
+
+
+
+<body>
+<g:evaluate var="jvar_cloudConfigs" jelly="true" object="true">
+var cloudConfigManager = new CliqrCloudConfigManager();
+var cloudConfigurations = cloudConfigManager.getAllConfiguration();
+cloudConfigurations = new global.JSON().decode(cloudConfigurations);
+gs.info("cloudConfigurations length = " + cloudConfigurations.length);
+var apiManager = new CliqrAPIManager();
+var cloudFamilies = apiManager.getCloudFamilies();
+cloudFamilies = new global.JSON().decode(cloudFamilies);
+cloudFamilies = cloudFamilies.clouds;
+
+var propertiesManager = new CliqrPropertiesManager();
+var apiCredentials = propertiesManager.get_api_credentials();
+var cloudIndex = 0;
+
+</g:evaluate>
+<g:breakpoint var="jvar_cloudConfigs" />
+
+<div class="ui stackable top fixed menu">
+    <div class="ui container">
+        <a class="item">
+            <img class="ui tiny image" src="logo.png" alt="CliQr Logo" />
+        </a>
+    </div>
+</div>
+<div class="ui hidden section divider"></div>
+<div class="ui hidden divider"></div>
+<div class="ui text container">
+    <div class="ui medium header">General Settings</div>
+    <div class="ui segment">
+        <div class="ui three link cards secondary menu">
+            <a class="card active" href="#experienceCart" data-toggle="tab">
+                <div class="center aligned content">
+                    <i class="huge shop icon"></i>
+                    <div class="ui hidden divider"></div>
+                    <div class="header">Cart Quote Style</div>
+                    <div class="description">
+                        Shop for services, add to cart. Enter a quote to finalize
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="#experienceDefault" data-toggle="tab">
+                <div class="center aligned content">
+                    <i class="huge fork icon"></i>
+                    <div class="ui hidden divider"></div>
+                    <div class="header">Default</div>
+                    <div class="description">
+                        Pick Applications to deploy on any supported cloud
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="ui hidden divider"></div>
+        <form class="ui toggled form active" id="experienceCart">
+			<g:evaluate>
+				var serverUrl = apiCredentials.server;
+			    var apiKey = apiCredentials.api_key;
+				var apiKey1 = "", apiKey2 = "", apiKey3 ="", apiKey4= "";
+				if (apiKey) {
+				    apiKey1 = apiKey.substring(0,4);
+				    apiKey2 = apiKey.substring(4,8);
+				    apiKey3 = apiKey.substring(8,12);
+				    apiKey4 = apiKey.substring(12,16);
+
+				}
+				var user_name = apiCredentials.username;
+			</g:evaluate>
+            <div class="required field">
+                <label>CCM URL</label>
+                <input type="text" name="ccm-url" placeholder="CCM URL" value="${serverUrl}"></input>
+            </div>
+            <div class="required field">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username" value="${user_name}"></input>
+            </div>
+            <div class="required field">
+                <label>API Key</label>
+                <div class="fields">
+                    <div class="four wide field">
+                        <input type="text" name="api-key-1" value="${apiKey1}"></input>
+                    </div>
+                    <div class="four wide field">
+                        <input type="text" name="api-key-2" value = "${apiKey2}"></input>
+                    </div>
+                    <div class="four wide field">
+                        <input type="text" name="api-key-3" value="${apiKey3}"></input>
+                    </div>
+                    <div class="four wide field">
+                        <input type="text" name="api-key-4" value="${apiKey4}"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="required field">
+                <label>Quotes Require Purchase Orders?</label>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" tabindex="0" class="hidden"></input>
+                </div>
+            </div>
+        </form>
+        <form class="ui toggled form" id="experienceDefault">
+            <div class="required field">
+                <label>CCM URL</label>
+                <input type="text" name="ccm-url" placeholder="CCM URL"></input>
+            </div>
+            <div class="required field">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username"></input>
+            </div>
+            <div class="required field">
+                <label>API Key</label>
+                <div class="fields">
+                    <div class="four wide field">
+                        <input type="text" name="api-key-1"></input>
+                    </div>
+                    <div class="four wide field">
+                        <input type="text" name="api-key-2"></input>
+                    </div>
+                    <div class="four wide field">
+                        <input type="text" name="api-key-3"></input>
+                    </div>
+                    <div class="four wide field">
+                        <input type="text" name="api-key-4"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="required field">
+                <label>Quotes Require Purchase Orders?</label>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" tabindex="0" class="hidden"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="ui hidden divider"></div>
+    <div class="ui medium header">Cloud and Instance Mapping</div>
+	<j:choose>
+	<j:when test="${cloudConfigurations.length == 0}">
+	<div class="ui secondary pointing menu" id="mapping">
+		<a class="item active" href="#tab1" data-toggle="tab">
+            Tab 1
+            <i class="remove circle outline icon"></i>
+        </a>
+		<a class="item" data-toggle="add">
+            <i class="large add circle icon"></i>
+        </a>
+	</div>
+		<div class="ui toggled segment active" id="tab1">
+        <form class="ui form">
+            <div class="required field">
+                <label>Cloud</label>
+                <select class="ui dropdown" id="cloudFamily" onchange="getRegions()">
+					<option value="">Select a cloud</option>
+					<j:forEach items="${cloudFamilies}" var="jvar_cloudFamilies">
+						<g:evaluate jelly="true">
+							var cloudFamilyId = jelly.jvar_cloudFamilies.id;
+							var cloudFamily = jelly.jvar_cloudFamilies.cloudFamily;
+						</g:evaluate>
+					    <option value="${cloudFamilyId}">${cloudFamily}</option>
+			        </j:forEach>
+                 </select>
+               </div>
+			 <div class="required field">
+                <label>Region</label>
+                <select class="ui dropdown" id="cloudRegion" onchange="getInstanceTypes()">
+					<option value="">Select a region</option>
+                </select>
+            </div>
+			<h4 class="ui dividing required header">Instance Mapping</h4>
+            <div class="inline aligned field">
+                <label>Small</label>
+                <select class="ui dropdown" id="instanceTypeSmall">
+				   <option value="">Select an instance type</option>
+                </select>
+            </div>
+			<div class="ui divider"></div>
+            <div class="inline aligned field">
+                <label>Medium</label>
+                <select class="ui dropdown" id="instanceTypeMedium">
+					 <option value="">Select an instance type</option>
+                </select>
+            </div>
+			 <div class="ui divider"></div>
+			<div class="inline aligned field">
+                <label>Large</label>
+                <select class="ui dropdown" id="instanceTypeLarge">
+					<option value="">Select an instance type</option>
+                </select>
+            </div>
+            <div class="ui divider"></div>
+			<div class="inline aligned field">
+                <label>Extra-Large</label>
+                <select class="ui dropdown" id="instanceTypeXLarge">
+					<option value="">Select an instance type</option>
+                </select>
+			</div>
+		</form>
+	</div>
+	</j:when>
+	<j:otherwise>
+		<div class="ui secondary pointing menu" id="mapping">
+	<j:forEach items="${cloudConfigurations}" var="jvar_config">
+		<g:evaluate jelly="true">
+			cloudIndex++;
+			gs.info("cloudIndex = " + cloudIndex);
+			var hashTab = "#tab" + cloudIndex;
+			var tab = "tab" + cloudIndex;
+			var activeText="";
+			if (cloudIndex == 1) {
+			    activeText="active";
+			}
+			var selectedCloudId = jelly.jvar_config.id;
+			var selectedRegionId = jelly.jvar_config.region.id;
+			var selectedInstances = jelly.jvar_config.region.instances;
+			var cloudName = jelly.jvar_config.name;
+		</g:evaluate>
+        <a class="item ${activeText}" href="${hashTab}" data-toggle="tab">
+            ${cloudName}
+            <i class="remove circle outline icon"></i>
+        </a>
+		</j:forEach>
+		<a class="item" data-toggle="add">
+            <i class="large add circle icon"></i>
+        </a>
+		<g:evaluate>
+			cloudIndex = 0;
+		</g:evaluate>
+    </div>
+
+    <j:forEach items="${cloudConfigurations}" var="jvar_config">
+		<g:evaluate jelly="true">
+
+			cloudIndex++;
+			gs.info("cloudIndex = " + cloudIndex);
+			var hashTab = "#tab" + cloudIndex;
+			var tab = "tab" + cloudIndex;
+			var activeText="";
+			if (cloudIndex == 1) {
+			    activeText="active";
+			}
+			var selectedCloudId = jelly.jvar_config.id;
+			var selectedRegionId = jelly.jvar_config.region.id;
+			var selectedInstances = jelly.jvar_config.region.instances;
+		</g:evaluate>
+    <div class="ui toggled segment ${activeText}" id="${tab}">
+        <form class="ui form">
+            <div class="required field">
+                <label>Cloud</label>
+                <select class="ui dropdown" id="cloudFamily" onchange="getRegions()">
+					<j:forEach items="${cloudFamilies}" var="jvar_cloudFamilies">
+						<g:evaluate jelly="true">
+							var cloudFamilyId = jelly.jvar_cloudFamilies.id;
+							var cloudFamily = jelly.jvar_cloudFamilies.cloudFamily;
+						</g:evaluate>
+				  <j:choose>
+				     <j:when test="${cloudFamilyId==selectedCloudId}">
+					     <option value="${cloudFamilyId}" selected="selected">${cloudFamily}</option>
+				     </j:when>
+				     <j:otherwise>
+					    <option value="${cloudFamilyId}">${cloudFamily}</option>
+					 </j:otherwise>
+       			</j:choose>
+			   </j:forEach>
+             </select>
+            </div>
+            <div class="required field">
+                <label>Region</label>
+				<g:evaluate>
+					var cloudRegions = apiManager.getCloudRegions(selectedCloudId);
+					cloudRegions = new global.JSON().decode(cloudRegions);
+					var regions = cloudRegions.cloudRegions;
+				</g:evaluate>
+                <select class="ui dropdown" id="cloudRegion" onchange="getInstanceTypes()">
+					<option value="">Select a region</option>
+					<j:forEach items="${regions}" var="jvar_region">
+						<g:evaluate jelly="true">
+							var regionId = jelly.jvar_region.id;
+							var regionName = jelly.jvar_region.displayName;
+						</g:evaluate>
+					<j:choose>
+				     <j:when test="${selectedRegionId==regionId}">
+					     <option value="${regionId}" selected="selected">${regionName}</option>
+				     </j:when>
+				     <j:otherwise>
+					     <option value="${regionId}">${regionName}</option>
+					 </j:otherwise>
+        			</j:choose>
+                  </j:forEach>
+                </select>
+            </div>
+			<g:evaluate>
+				var instances = apiManager.getInstanceTypesForCloudRegion(selectedCloudId, selectedRegionId);
+				instances = new global.JSON().decode(instances);
+				instances = instances.cloudInstanceTypes;
+				var size2Instances = [];
+				for (var i in selectedInstances) {
+				  var size = selectedInstances[i].size;
+				  size2Instances[size]=selectedInstances[i];
+				}
+			</g:evaluate>
+            <h4 class="ui dividing required header">Instance Mapping</h4>
+            <div class="inline aligned field">
+                <label>Small</label>
+                <select class="ui dropdown" id="instanceTypeSmall">
+					<j:forEach items="${instances}" var="jvar_instanceType">
+						<g:evaluate jelly="true">
+							var instanceId = jelly.jvar_instanceType.id;
+							var instanceType = jelly.jvar_instanceType.type;
+							var smallInstance = size2Instances["small"];
+							var smallInstanceId = smallInstance.id;
+						</g:evaluate>
+						<j:choose>
+						<j:when test="${smallInstanceId==instanceId}">
+						    <option value="${instanceId}" selected="selected">${instanceType}</option>
+						</j:when>
+						<j:otherwise>
+							<option value="${instanceId}">${instanceType}</option>
+						</j:otherwise>
+						</j:choose>
+					</j:forEach>
+                </select>
+            </div>
+            <div class="ui divider"></div>
+            <div class="inline aligned field">
+                <label>Medium</label>
+                <select class="ui dropdown" id="instanceTypeMedium">
+					<j:forEach items="${instances}" var="jvar_instanceType">
+						<g:evaluate jelly="true">
+							var instanceId = jelly.jvar_instanceType.id;
+							var instanceType = jelly.jvar_instanceType.type;
+							var mediumInstance = size2Instances["medium"];
+							var mediumInstanceId = mediumInstance.id;
+						</g:evaluate>
+						<j:choose>
+						<j:when test="${mediumInstanceId==instanceId}">
+						    <option value="${instanceId}" selected="selected">${instanceType}</option>
+						</j:when>
+						<j:otherwise>
+							<option value="${instanceId}">${instanceType}</option>
+						</j:otherwise>
+						</j:choose>
+					</j:forEach>
+                </select>
+            </div>
+            <div class="ui divider"></div>
+			<div class="inline aligned field">
+                <label>Large</label>
+                <select class="ui dropdown" id="instanceTypeLarge">
+					<j:forEach items="${instances}" var="jvar_instanceType">
+						<g:evaluate jelly="true">
+							var instanceId = jelly.jvar_instanceType.id;
+							var instanceType = jelly.jvar_instanceType.type;
+							var largeInstance = size2Instances["large"];
+							var largeInstanceId = largeInstance.id;
+						</g:evaluate>
+						<j:choose>
+						<j:when test="${largeInstanceId==instanceId}">
+						    <option value="${instanceId}" selected="selected">${instanceType}</option>
+						</j:when>
+						<j:otherwise>
+							<option value="${instanceId}">${instanceType}</option>
+						</j:otherwise>
+						</j:choose>
+					</j:forEach>
+                </select>
+            </div>
+            <div class="ui divider"></div>
+			<div class="inline aligned field">
+                <label>Extra-Large</label>
+                <select class="ui dropdown" id="instanceTypeXLarge">
+					<j:forEach items="${instances}" var="jvar_instanceType">
+						<g:evaluate jelly="true">
+							var instanceId = jelly.jvar_instanceType.id;
+							var instanceType = jelly.jvar_instanceType.type;
+							var xlargeInstance = size2Instances["extralarge"];
+							var xlargeInstanceId = xlargeInstance.id;
+						</g:evaluate>
+						<j:choose>
+						<j:when test="${xlargeInstanceId==instanceId}">
+						    <option value="${instanceId}" selected="selected">${instanceType}</option>
+						</j:when>
+						<j:otherwise>
+							<option value="${instanceId}">${instanceType}</option>
+						</j:otherwise>
+						</j:choose>
+					</j:forEach>
+                </select>
+            </div>
+            <div class="ui divider"></div>
+        </form>
+      </div>
+    </j:forEach>
+  </j:otherwise>
+</j:choose>
+</div>
+<div class="ui hidden section divider"></div>
+<div class="ui hidden divider"></div>
+<div class="ui stackable bottom fixed menu">
+    <div class="ui container">
+        <div class="right menu">
+            <div class="item">
+                <button class="ui button" type="submit" onclick="saveFormData()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+	</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js"></script>
+</j:jelly>
