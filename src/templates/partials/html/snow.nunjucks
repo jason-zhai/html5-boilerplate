@@ -1,3 +1,19 @@
+<div class="ui small basic modal">
+    <div class="ui icon header">
+      <i class="warning circle icon"></i>
+      Delete tab and all of its content?
+    </div>
+    <div class="actions">
+      <div class="ui red basic cancel inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+      <div class="ui green ok inverted button">
+        <i class="checkmark icon"></i>
+        Yes
+      </div>
+    </div>
+</div>
 <div class="ui stackable top fixed menu">
     <div class="ui container">
         <a class="item">
