@@ -11,16 +11,97 @@ $('.ui.form')
         rules: [
           {
             type   : 'empty',
-            prompt : 'Please enter your name'
+            prompt : 'Please enter your CCM URL'
           }
         ]
       },
-      name: {
+      username: {
         identifier: 'username',
         rules: [
           {
             type   : 'empty',
-            prompt : 'Please enter your name'
+            prompt : 'Please enter your username'
+          }
+        ]
+      },
+      apiKey1: {
+        identifier: 'api-key-1',
+        rules: [
+          {
+            type   : 'exactLength[4]',
+            prompt : 'Field should contain 4 characters'
+          }
+        ]
+      },
+      apiKey2: {
+        identifier: 'api-key-2',
+        rules: [
+          {
+            type   : 'exactLength[4]',
+            prompt : 'Field should contain 4 characters'
+          }
+        ]
+      },
+      apiKey3: {
+        identifier: 'api-key-3',
+        rules: [
+          {
+            type   : 'exactLength[4]',
+            prompt : 'Field should contain 4 characters'
+          }
+        ]
+      },
+      apiKey4: {
+        identifier: 'api-key-4',
+        rules: [
+          {
+            type   : 'exactLength[4]',
+            prompt : 'Field should contain 4 characters'
+          }
+        ]
+      },
+      region: {
+        identifier: 'cloudRegion',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select a region'
+          }
+        ]
+      },
+      instanceTypeSmall: {
+        identifier: 'instanceTypeSmall',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select an instance'
+          }
+        ]
+      },
+      instanceTypeMedium: {
+        identifier: 'instanceTypeMedium',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select an instance'
+          }
+        ]
+      },
+      instanceTypeLarge: {
+        identifier: 'instanceTypeLarge',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select an instance'
+          }
+        ]
+      },
+      instanceTypeXLarge: {
+        identifier: 'instanceTypeXLarge',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select an instance'
           }
         ]
       }
@@ -94,4 +175,12 @@ $('.ui.form')
     });
 
     $('#mapping [data-toggle="tab"] > i.remove').click(tabRemove);
+
+    $('button[type="submit"]').click(function() {
+        if ( $('.ui.form').form('validate form') ) {
+            console.log('something is missing');
+        } else {
+            console.log('all fields ok');
+        }
+    });
 }());

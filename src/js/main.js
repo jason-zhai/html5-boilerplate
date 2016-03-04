@@ -177,6 +177,10 @@ $('.ui.form')
     $('#mapping [data-toggle="tab"] > i.remove').click(tabRemove);
 
     $('button[type="submit"]').click(function() {
-        $('.ui.form').form('validate form');
+        if ( $('.ui.form').form('validate form') ) {
+            console.log('something is missing');
+        } else {
+            console.log('all fields ok');
+        }
     });
 }());
