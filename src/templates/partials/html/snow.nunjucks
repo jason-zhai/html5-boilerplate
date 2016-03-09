@@ -1,3 +1,4 @@
+
 <div class="ui small basic modal">
     <div class="ui icon header">
       <i class="warning circle icon"></i>
@@ -14,11 +15,15 @@
       </div>
     </div>
 </div>
-<div class="ui stackable top fixed menu">
+<div class="ui stackable top fixed borderless menu">
     <div class="ui container">
         <a class="item">
             <img class="ui tiny image" src="img/logo.png" alt="CliQr Logo" />
         </a>
+    </div>
+    <div class="ui positive message">
+              <p>This is a special notification which you can dismiss if you're bored with it.</p>
+              <i class="close icon"></i>
     </div>
 </div>
 <div class="ui hidden section divider"></div>
@@ -165,7 +170,12 @@
             <div class="field">
                 <label>VPC</label>
                 <select class="ui dropdown">
-                    <option value="">vpc-8f7aeeea</option>
+                    <option value="2">vpc-8f7aeeea</option>
+                    <option value="2">vpc-8f7aeeea</option>
+                    <option value="2">vpc-8f7aeeea</option>
+                    <option value="2">vpc-8f7aeeea</option>
+                    <option value="2">vpc-8f7aeeea</option>
+                    <option value="2">vpc-8f7aeeea</option>
                 </select>
             </div>
             <div class="required field">
@@ -187,7 +197,7 @@
 </div>
 <div class="ui hidden section divider"></div>
 <div class="ui hidden divider"></div>
-<div class="ui stackable bottom fixed menu">
+<div class="ui stackable bottom fixed borderless menu">
     <div class="ui container">
         <div class="right menu">
             <div class="item">

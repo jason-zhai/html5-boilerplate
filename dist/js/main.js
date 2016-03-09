@@ -176,6 +176,12 @@ $('.ui.form')
 
     $('#mapping [data-toggle="tab"] > i.remove').click(tabRemove);
 
+    $('.ui.message .close').click(function() {
+        $(this)
+          .closest('.message')
+          .transition('scale')
+        ;
+    });
     $('button[type="submit"]').click(function() {
         if ( $('.ui.form').form('validate form') ) {
             console.log('something is missing');
