@@ -52,6 +52,12 @@
 .ui.cards.menu > .active:hover {
 	box-shadow: 0 1px 3px 0 #4183C4,0 0 0 1px #4183C4;
 }
+.ui.secondary.pointing.menu > .item.error {
+	color: #9F3A38;
+}
+.ui.secondary.pointing.menu > .item.active.error {
+	border-bottom-color: #9F3A38;
+}
 
 .ui.form > .required.field > label + .ui.toggle.checkbox:after {
 	display: none;

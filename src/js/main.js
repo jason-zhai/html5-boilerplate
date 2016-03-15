@@ -1,8 +1,7 @@
 $('.ui.checkbox')
   .checkbox()
 ;
-$('.ui.form')
-  .form({
+var widgetValidation = {
     on: 'blur',
     inline: true,
     fields: {
@@ -106,7 +105,9 @@ $('.ui.form')
         ]
       }
     }
-  })
+};
+$('.ui.form')
+  .form(widgetValidation)
 ;
 
 (function() {
@@ -160,6 +161,7 @@ $('.ui.form')
         var tabContent = defaultMapping.clone();
 
         tabNew.addClass('active');
+        tabNew.removeClass('error');
         tabNew.attr('href', '#tab' + tabInitNumber);
         tabNew.find('i.remove').click(tabRemove);
 
@@ -171,6 +173,7 @@ $('.ui.form')
         tabContent.find('select.dropdown').dropdown();
         $('.ui.text.container').append(tabContent);
 
+        $('.ui.form').form(widgetValidation);
         tabOneLeft();
     });
 
@@ -185,6 +188,12 @@ $('.ui.form')
     $('button[type="submit"]').click(function() {
         if ( $('.ui.form').form('validate form') ) {
             console.log('something is missing');
+            $('[href*="#tab"]').removeClass('error');
+            $('.error').closest('[id*="tab"]').each(function() {
+                console.log($(this).attr('id'));
+                var selector = $(this).attr('id');
+                $('[href="#' + selector + '"]').addClass('error');
+            });
         } else {
             console.log('all fields ok');
         }
