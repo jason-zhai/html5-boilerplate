@@ -2,12 +2,12 @@
 	transition: opacity 1s ease-out;
     opacity: 0;
     height: 0;
-	visibility: hidden;
+	overflow: hidden;
 }
 .ui.toggled.active {
 	opacity: 1;
     height: auto;
-	visibility: visible;
+	overflow: visible;
 }
 .ui.toggled.segment {
 	margin: 0;
