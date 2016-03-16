@@ -186,16 +186,23 @@ $('.ui.form')
         ;
     });
     $('button[type="submit"]').click(function() {
-        if ( $('.ui.form').form('validate form') ) {
-            console.log('something is missing');
-            $('[href*="#tab"]').removeClass('error');
-            $('.error').closest('[id*="tab"]').each(function() {
-                console.log($(this).attr('id'));
-                var selector = $(this).attr('id');
-                $('[href="#' + selector + '"]').addClass('error');
-            });
-        } else {
-            console.log('all fields ok');
+        var validationResult = $('.ui.form').form('validate form');
+        for(var i=0; i < validationResult.length; i++) {
+            if(validationResult[i]) {
+                if(i === (validationResult.length - 1)) {
+                    console.log('all forms ok. sending data.');
+                    $('[href*="#tab"]').removeClass('error');
+                }
+            } else {
+                console.log('something is missing');
+                $('[href*="#tab"]').removeClass('error');
+                $('.field.error').closest('[id*="tab"]').each(function() {
+                    console.log($(this).attr('id'));
+                    var selector = $(this).attr('id');
+                    $('[href="#' + selector + '"]').addClass('error');
+                });
+                break;
+            }
         }
     });
 }());
