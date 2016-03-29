@@ -113,6 +113,13 @@ $('.ui.form')
 (function() {
     var defaultMapping = $('#tab1').clone();
     var tabInitNumber = $('#mapping [data-toggle="tab"]').length;
+    var tabOneLeft = function() {
+        if($('#mapping [data-toggle="tab"]').length === 1) {
+            $('.menu > .item > i.remove').hide();
+        } else {
+            $('.menu > .item > i.remove').show();
+        }
+    };
     var tabRemove = function(e) {
         var tabItem = $(this).parent();
         e.stopPropagation();
@@ -142,14 +149,15 @@ $('.ui.form')
           .modal('show')
         ;
     };
-    var tabOneLeft = function() {
-        if($('#mapping [data-toggle="tab"]').length === 1) {
-            $('.menu > .item > i.remove').hide();
-        } else {
-            $('.menu > .item > i.remove').show();
-        }
+    var updateTabTitle = function(el) {
+        var selector = $(el).closest('.ui.segment').attr('id');
+        var title = $(el).find('option:selected').text();
+        $('[href="#' + selector + '"] > span').html(title);
     };
 
+    $('.cloudFamily').change(function() { // this only select 1 id. since id is supposed to be unique
+        updateTabTitle(this);
+    });
     $('select.dropdown').dropdown();
     tabOneLeft();
 
@@ -157,8 +165,8 @@ $('.ui.form')
         tabInitNumber += 1;
         var tabOthers = $(this).siblings();
         var tabNew = $(this).prev().clone();
-        var tabMenu = $(this).closest('.ui.menu');
         var tabContent = defaultMapping.clone();
+        var tabTitleSelect = tabContent.find('.cloudFamily');
 
         tabNew.addClass('active');
         tabNew.removeClass('error');
@@ -171,6 +179,10 @@ $('.ui.form')
 
         tabContent.attr('id', 'tab' + tabInitNumber);
         tabContent.find('select.dropdown').dropdown();
+        updateTabTitle(tabTitleSelect);
+        tabTitleSelect.change(function() {
+            updateTabTitle(this);
+        });
         $('.ui.text.container').append(tabContent);
 
         $('.ui.form').form(widgetValidation);
