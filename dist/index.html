@@ -149,7 +149,7 @@
     <div class="ui medium header">Cloud & Instance Mapping</div>
     <div class="ui secondary pointing menu" id="mapping">
         <a class="item active" href="#tab1" data-toggle="tab">
-            <span>Amazon</span>
+            <span>Select Cloud</span>
             <i class="remove circle outline icon"></i>
         </a>
         <a class="item" data-toggle="add">
@@ -161,7 +161,8 @@
             <div class="required field">
                 <label>Cloud</label>
                 <select id="cloudFamily" class="ui dropdown cloudFamily">
-                    <option value="">Amazon</option>
+                    <option value="">Select Cloud</option>
+                    <option value="3" selected="selected">Amazon</option>
                     <option value="2">Google</option>
                     <option value="1">Openstack</option>
                 </select>
@@ -170,7 +171,7 @@
                 <label>Region</label>
                 <select class="ui dropdown" id="cloudRegion">
                     <option value="">US West (Oregon)</option>
-                    <option value="1">US East</option>
+                    <option value="1" selected="selected">US East</option>
                 </select>
             </div>
             <h4 class="ui dividing required header">Instance Mapping</h4>

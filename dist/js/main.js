@@ -177,6 +177,7 @@ $('.ui.form')
         tabNew.insertBefore($(this));
         $("[id^='tab']").removeClass('active');
 
+        tabContent.find('select').val('');
         tabContent.attr('id', 'tab' + tabInitNumber);
         tabContent.find('select.dropdown').dropdown();
         updateTabTitle(tabTitleSelect);
