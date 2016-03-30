@@ -124,7 +124,7 @@ $('.ui.form')
         var tabItem = $(this).parent();
         e.stopPropagation();
         e.preventDefault();
-        $('.ui.basic.modal')
+        $('.ui.modal')
           .modal({
             closable  : true,
             onDeny    : function(){

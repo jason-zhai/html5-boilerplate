@@ -20,6 +20,17 @@
 	border: 1px solid rgba(34,36,38,.15);
 	box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
 }
+
+.ui.form > .fields > .wide.text.field {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0;
+}
+.ui.form > .fields > .wide.action.field {
+	margin-bottom: 0;
+	padding-bottom: .28571429rem;
+}
+
 .ui.toggled.form > .field > .ui.toggle.checkbox {
 	margin-left: 1px;
 }
