@@ -110,10 +110,11 @@ textarea {
 
 /*
  * Hide visually and from screen readers
+   remove !important due to problems with other libraries and frameworks
  */
 
 .hidden {
-    display: none !important;
+    display: none;
 }
 
 /*

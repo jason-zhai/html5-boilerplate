@@ -341,12 +341,12 @@ body {
 
 /*
  * Hide visually and from screen readers
- causing issues with semantic UI
+   remove !important due to problems with other libraries and frameworks
  */
 
-/*.hidden {
-    display: none !important;
-}*/
+.hidden {
+    display: none;
+}
 
 /*
  * Hide only visually, but have it available for screen readers:
