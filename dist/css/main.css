@@ -12,7 +12,7 @@
     margin-right: 1.5em;
 }
 
-.foo {
+.foo, .bar {
     width: 100px;
     height: 100px;
     background-color: #ccc;
@@ -20,6 +20,9 @@
     background-image: url('../img/btn_close_x.svg');
     background-size: cover;
     background-repeat: no-repeat;
+}
+.bar {
+    background-image: url('../img/cake.svg');
 }
 
 
